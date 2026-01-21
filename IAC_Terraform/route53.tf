@@ -1,6 +1,5 @@
 # Hosted zone for the domain (allen-nguyen-resume.com)
-# Hosted zone for the subdomain (tf.allen-nguyen-resume.com)
-resource "aws_route53_zone" "tf_subdomain" { # "tf_domain"
+resource "aws_route53_zone" "tf_domain" {
   name = var.domain_name
 
   tags = {
