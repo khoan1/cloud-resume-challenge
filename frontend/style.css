@@ -1,0 +1,591 @@
+/* Styles for all elements in index.html */
+
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Smooth scrolling and scroll snapping */
+html {
+    scroll-behavior: smooth;
+    /* Smooth scroll on nav clicks */
+    scroll-snap-type: y mandatory;
+    /* Enable scroll snapping */
+}
+
+/* Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    overflow-y: scroll;
+}
+
+/* Section Styles */
+section {
+    min-height: 100vh;
+    /* Full screen height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+    /* Each section snaps to start */
+    padding: 50px 50px;
+    scroll-margin-top: 80px;
+    /* Ensure sections don't hide under the fixed header */
+}
+
+/* Header Styles */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Section headings */
+h2 {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.0rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Underline effect for section headings */
+h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #0077ff;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* Logo Styles */
+.logo svg {
+    height: 45px;
+    /* adjust logo size */
+    width: auto;
+    display: block;
+    /* removes inline spacing */
+    margin-right: 20px;
+    /* space between logo and nav items */
+}
+
+/* Navigation Styles */
+nav {
+    display: flex;
+    align-items: center;
+    /* vertically center logo + nav */
+    padding: 5px 15px;
+}
+
+/* Nav list styles */
+nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+    /* keeps nav items on the right */
+    padding: 0;
+    margin: 0;
+    flex: 1;
+    /* take remaining space after logo */
+}
+
+/* Nav item styles */
+nav ul li {
+    margin: 0 15px;
+}
+
+/* Nav link styles */
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 1rem;
+    position: relative;
+    display: inline-block;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Pop-out hover effect */
+nav ul li a:hover {
+    transform: scale(1.15);
+    /* Grows slightly */
+    color: #0077ff;
+    /* Changes color */
+}
+
+/* Add underline animation */
+nav ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: #0077ff;
+    transition: width 0.3s ease;
+}
+
+/* Expand underline on hover */
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Active Link Highlight for nav */
+nav ul li a.active {
+    color: #0077ff;
+}
+
+nav ul li a.active::after {
+    width: 100%;
+    background-color: #0077ff;
+}
+
+/* Hero Section (About) */
+#about {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 50px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Hero Text Styles */
+.hero-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hero Text Content */
+.hero-text h1 {
+    font-size: 3rem;
+    color: #222;
+    margin-bottom: 20px;
+}
+
+/* Blue accent underline under hero name */
+.hero-name {
+    position: relative;
+    display: inline-block;
+    font-size: 3rem;
+    color: #222;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.hero-name::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: #0077ff;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* Hero Paragraph */
+.hero-text p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 30px;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Hero Buttons */
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* Button Styles */
+.hero-buttons a {
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Primary Button */
+.btn-primary {
+    background-color: #0077ff;
+    color: #fff;
+}
+
+/* Primary Button Hover */
+.btn-primary:hover {
+    background-color: #005fcc;
+    transform: scale(1.05);
+}
+
+/* Secondary Button */
+.btn-secondary {
+    border: 2px solid #0077ff;
+    color: #0077ff;
+}
+
+/* Secondary Button Hover */
+.btn-secondary:hover {
+    background-color: #0077ff;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Hero Image Styles */
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hero Image */
+.hero-image img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Pop-out hover effect for hero image on hover */
+.hero-image img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Hover effect */
+.hero-image img:hover {
+    transform: scale(1.07);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+/* Hamburger bars */
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 4px 0;
+    transition: 0.3s;
+}
+
+/* Hamburger animation to X logo */
+.hamburger.open div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+/* Hamburger middle bar */
+.hamburger.open div:nth-child(2) {
+    opacity: 0;
+}
+
+/* Hamburger bottom bar */
+.hamburger.open div:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 900px) {
+    #about {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-text {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    nav {
+        position: relative;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    nav ul {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: #fff;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 200px;
+        padding: 15px 0;
+        display: none;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        width: 100%;
+        margin: 10px 0;
+        padding: 0 20px;
+    }
+
+    nav ul li a {
+        width: 100%;
+        display: block;
+    }
+}
+
+/* Override global section styles for content sections */
+#experience,
+#certifications,
+#projects {
+    min-height: 80vh;
+    /* fills ~80% of the screen */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 40px 20px 60px 20px;
+    /* even top and bottom space */
+}
+
+/* Adjust spacing specifically for Education and Contacts sections */
+#education,
+#contacts {
+    min-height: calc(100vh - 120px);
+    /* responsive section height */
+}
+
+/* Education Section - Second Heading Style for University names */
+#education .card h3:nth-of-type(2) {
+    font-size: 1.05rem;
+    /* slightly smaller than the main degree */
+    font-weight: normal;
+    color: #333;
+    margin-top: -5px;
+    /* pulls it closer to the degree line */
+}
+
+/* Cards Container */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    padding: 20px 10px;
+}
+
+/* Individual Card Styles */
+.card {
+    flex: 1 1 350px;
+    max-width: 450px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Card hover effect */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Horizontal layout for certifications cards */
+.card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Text section inside cards */
+.card-text {
+    flex: 1;
+    padding-right: 10px;
+}
+
+/* Spacing between text elements inside cards */
+.card h3,
+.card p,
+.card ul {
+    margin-bottom: 10px;
+    /* adds even breathing room between sections */
+}
+
+/* Bullet list styles inside cards */
+.card ul {
+    margin-left: 20px;
+    /* indent bullet list */
+}
+
+/* Space between bullet points */
+.card li:not(:last-child) {
+    margin-bottom: 6px;
+}
+
+/* Logo section inside cards */
+.cert-logo img {
+    width: 60px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Certification note text */
+.cert-note {
+    font-size: 0.85rem;
+    color: #555;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* Background colors for alternating sections */
+#about {
+    background-color: #fafafa;
+}
+
+#experience {
+    background-color: #fff;
+}
+
+#education {
+    background-color: #fafafa;
+}
+
+#certifications {
+    background-color: #fff;
+}
+
+#projects {
+    background-color: #fafafa;
+}
+
+/* Contact Cards */
+.contact-card {
+    text-align: center;
+}
+
+/* Contact Card Headings */
+.contact-card h3 {
+    margin-bottom: 10px;
+    color: #000;
+    font-weight: bold;
+}
+
+/* Icon container styles */
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+}
+
+/* SVG icon styles */
+.icon-container svg {
+    width: 45px;
+    height: 45px;
+    transition: transform 0.3s ease;
+}
+
+/* Icon hover effect */
+.icon-container svg:hover {
+    transform: scale(1.15);
+}
+
+/* Contact link styles */
+.contact-card a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Contact link hover effect */
+.contact-card a:hover {
+    color: #0077ff;
+}
+
+/* Footer styles */
+#footer {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 40px 20px;
+    scroll-snap-align: start;
+    min-height: 50vh;
+    /* not full height, but tall enough to feel anchored */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Footer paragraph styles */
+#footer p {
+    margin: 8px 0;
+    color: #333;
+}
+
+/* Back to Top Button Styles */
+#back-to-top {
+    margin: 15px 0;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0077ff;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Back to Top Button Hover */
+#back-to-top:hover {
+    background-color: #005fcc;
+}
+
+/* Global link style for external and email links */
+a[target="_blank"],
+.contact-card a[href^="mailto:"] {
+    color: #0077ff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a[target="_blank"]:hover,
+.contact-card a[href^="mailto:"]:hover {
+    color: #005fcc;
+    text-decoration: underline;
+}
