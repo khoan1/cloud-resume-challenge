@@ -28,7 +28,7 @@ jobs:
             --delete \
             --exclude ".git/*" \
             --exclude ".github/*" \
-            --exclude "IAC_Terraform/*"
+            --exclude "terraform/*"
 
       - name: Invalidate CloudFront cache
         run: |
