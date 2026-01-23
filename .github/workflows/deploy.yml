@@ -25,14 +25,10 @@ jobs:
       - name: Sync files to S3
         run: |
           aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }} \
-            --delete \
-            --exclude ".git/*" \
-            --exclude ".github/*" \
-            --exclude "backend/*" \
-            --exclude "terraform/*" \
-            --exclude "*.tf" \
-            --exclude "README.md" \
-            --exclude ".gitignore"
+            --exclude "*" \
+            --include "frontend/*" \
+            --include "frontend/**"
+            --exclude "frontend/README.md"
 
       - name: Invalidate CloudFront cache
         run: |
