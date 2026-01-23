@@ -27,7 +27,7 @@ jobs:
           aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }} \
             --exclude "*" \
             --include "frontend/*" \
-            --include "frontend/**"
+            --include "frontend/**" \
             --exclude "frontend/README.md"
 
       - name: Invalidate CloudFront cache
