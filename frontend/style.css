@@ -1,3 +1,4 @@
+/* Version 1.1 */
 /* Styles for all elements in index.html */
 
 /* Basic reset */
@@ -19,6 +20,22 @@ html {
 body {
     font-family: Arial, sans-serif;
     overflow-y: scroll;
+}
+
+h1,
+h2 {
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 2.2rem;
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    font-size: 1.4rem;
+    letter-spacing: -0.3px;
 }
 
 /* Section Styles */
@@ -196,6 +213,17 @@ nav ul li a.active::after {
     background-color: #0077ff;
     margin: 10px auto 0;
     border-radius: 2px;
+}
+
+/* Hero contact icons */
+.hero-contact {
+    display: flex;
+    justify-content: center;
+    /* center horizontally */
+    gap: 20px;
+    /* space between icons */
+    margin-bottom: 1px;
+    /* spacing below */
 }
 
 /* Hero Paragraph */
@@ -477,15 +505,15 @@ nav ul li a.active::after {
     background-color: #fafafa;
 }
 
-#experience {
+#certifications {
     background-color: #fff;
 }
 
-#education {
+#experience {
     background-color: #fafafa;
 }
 
-#certifications {
+#education {
     background-color: #fff;
 }
 
@@ -517,7 +545,22 @@ nav ul li a.active::after {
 .icon-container svg {
     width: 45px;
     height: 45px;
+    color: #0077ff;
+    /* ONE color source */
+    fill: currentColor;
+    /* SVG obeys text color */
     transition: transform 0.3s ease;
+}
+
+/* LinkedIn special handling */
+.linkedin-icon .icon-bg {
+    fill: currentColor;
+    /* blue circle */
+}
+
+.linkedin-icon .icon-fg {
+    fill: #ffffff;
+    /* white "IN" */
 }
 
 /* Icon hover effect */
