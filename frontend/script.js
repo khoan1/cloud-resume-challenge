@@ -1,56 +1,116 @@
+// Version 1.2
+
 // JavaScript for Hamburger Menu and Highlight active section
 
-// Hamburger toggle
+// Hamburger menu toggle
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
 
 hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('active'); // show/hide menu
+    hamburger.classList.toggle('open');  // animate hamburger to X
 });
 
-// Close menu when clicking a link
-document.querySelectorAll('#nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
+// Nav Items and Sections
+const sections = document.querySelectorAll("section"); // all page sections
+const navItems = document.querySelectorAll("nav ul li a"); // nav links
+
+// Smooth scroll links (nav + buttons)
+const smoothScrollLinks = document.querySelectorAll('a[href^="#"]'); // all anchor links to sections
+
+let isAutoScrolling = false; // flag to prevent scroll handler during smooth scroll
+
+// Smooth Scroll Functionality
+smoothScrollLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault(); // prevent default jump
+
+        const targetId = link.getAttribute('href').substring(1);
+        const target = document.getElementById(targetId);
+
+        if (!target) return; // safety check
+
+        isAutoScrolling = true; // disable scroll highlight while scrolling
+
+        // Remove previous active nav item
+        navItems.forEach(a => a.classList.remove('active'));
+
+        // Highlight the corresponding nav item instantly (if exists)
+        const navLink = document.querySelector(`nav ul li a[href="#${targetId}"]`);
+        if (navLink) navLink.classList.add('active');
+
+        // Close hamburger menu if open
         navLinks.classList.remove('active');
         hamburger.classList.remove('open');
+
+        // Smooth scroll to target
+        target.scrollIntoView({ behavior: "smooth" });
+
+        // Reset auto-scroll flag after smooth scroll duration
+        setTimeout(() => { isAutoScrolling = false; }, 500); // match CSS smooth scroll timing
     });
 });
 
-// Highlight active section
-const sections = document.querySelectorAll("section");
-const navItems = document.querySelectorAll("nav ul li a");
+// Scroll Highlight Function
+function updateActiveNav() {
+    if (isAutoScrolling) return; // skip during programmatic scroll
 
-window.addEventListener("scroll", () => {
     let current = "";
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 120;
-        if (scrollY >= sectionTop) current = section.getAttribute("id");
-    });
 
-    navItems.forEach(a => {
-        a.classList.remove("active");
-        if (a.getAttribute("href") === "#" + current) {
-            a.classList.add("active");
+    sections.forEach(section => {
+        const sectionBounds = section.getBoundingClientRect();
+
+        // Check if the "indicator line" is inside the section
+        if (sectionBounds.top <= 150 && sectionBounds.bottom >= 150) {
+            current = section.id;
         }
     });
-});
 
+    // Update nav link highlight
+    navItems.forEach(a => {
+        a.classList.toggle(
+            "active",
+            a.getAttribute("href") === "#" + current
+        );
+    });
+}
 
+// Run once on page load to fix initial highlight bug
+updateActiveNav();
 
-// JavaScript for Back to Top button and Page View Counter
+// Run on scroll
+window.addEventListener("scroll", updateActiveNav);
 
-// Back to top
-document.getElementById("back-to-top").addEventListener("click", () => {
+// Back to Top Button Functionality
+const backToTop = document.getElementById("back-to-top");
+
+backToTop.addEventListener('click', () => {
+    isAutoScrolling = true; // prevent highlight jump
+    navItems.forEach(a => a.classList.remove('active')); // remove current highlight
+
     window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // Highlight first section/nav
+    const firstNav = document.querySelector(`nav ul li a[href="#${sections[0].id}"]`);
+    if (firstNav) firstNav.classList.add('active');
+
+    setTimeout(() => { isAutoScrolling = false; }, 500); // match smooth scroll timing
 });
+
+
+// JavaScript for Page View Counter
+
+// Page view counter element
+const counterElement = document.getElementById("view-count");
 
 // Page view counter
-fetch("https://your-api-gateway-endpoint.com/views")
+fetch("https://25fu0kaf82.execute-api.us-east-1.amazonaws.com/count")
     .then(response => response.json())
     .then(data => {
-        document.getElementById("view-count").textContent = data.views;
+        counterElement.textContent = data.count; // Display the visitor count
     })
-    .catch(() => {
-        document.getElementById("view-count").textContent = "N/A";
+    // Handle errors
+    .catch(error => {
+        console.error("Error fetching visitor count:", error);
+        counterElement.textContent = "N/A";
     });
