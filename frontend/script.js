@@ -1,4 +1,4 @@
-// Version 1.3
+// Version 1.4
 
 // JavaScript for Hamburger Menu and Highlight active section
 
